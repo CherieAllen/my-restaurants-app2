@@ -38,7 +38,7 @@ const [allRestaurants, setAllRestaurants] = useState()
           <Text style={styles.restaurantsName} key={singleRest.id}>
             {singleRest.name}
           </Text>
-          <Image source = {{uri: singleRest.img}} style ={{width: '100%'}}
+          <Image source = {{uri: singleRest.image}} style ={{width: '100%', height: 100 }}
 />          
           
 
