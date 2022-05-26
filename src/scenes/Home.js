@@ -1,9 +1,11 @@
-import { useEffect, useState} from 'react'
+import { useEffect, useState, useContext} from 'react'
 import { ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native'
+import { SingleRestContext } from '../../App'
 import RestaurantCard from '../components/RestaurantCard'
 
 export default function Home({navigation}) {
     const [allRestaurants, setAllRestaurants] = useState()
+    const {setCurrentRest} = useContext(SingleRestContext)
 
 
 
@@ -14,14 +16,19 @@ useEffect(() => {
     .catch(console.error)
 }, [])
 
+const handlePress =(singleRest) => {
+  setCurrentRest(singleRest);
+  navigation.navigate('Details')
+}
+
 
 return(
     <ScrollView>
             {!allRestaurants
-              ? <ActivityIndicator size='large' color='pink' />
+              ? <ActivityIndicator size='large' color='yellow' />
               : allRestaurants.map(singleRest => (
                 <TouchableOpacity key={singleRest.id} 
-                onPress={()=> navigation.navigate('Details')}>
+                onPress={()=> handlePress(singleRest)}>
                 <RestaurantCard   singleRest={singleRest} />
                 </TouchableOpacity>
               ))

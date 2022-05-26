@@ -15,9 +15,9 @@ export const SingleRestContext = createContext(null);
 
 export default function App() {
 
-  const [currentRes, setCurrentRes] = useState();
+  const [currentRest, setCurrentRest] = useState();
   return (
-    <SingleRestContext.Provider>
+    <SingleRestContext.Provider value={{currentRest, setCurrentRest}}>
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
             <Stack.Screen name="Home" component={Home} options={{title:'Local Restaurants'}} />
@@ -25,7 +25,7 @@ export default function App() {
           </Stack.Navigator>
       <StatusBar style="auto" />
    </NavigationContainer>
-  </SingleRestContext.Provider>
+   </SingleRestContext.Provider>
   );
 }
 
